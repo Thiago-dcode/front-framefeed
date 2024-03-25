@@ -6,7 +6,7 @@ import "./css/effects.css";
 import "./css/post.css";
 import "./css/index.css";
 import './css/user.css'
-import './css/postEdit.css'
+import './css/postToEdit.css'
 import './css/form.css'
 import { router } from "./routes";
 import { RouterProvider } from "react-router-dom";
