@@ -4,7 +4,7 @@ import Api from "../api/Api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import ErrorDiv from "./errorDiv";
+import ErrorDiv from "./ErrorDiv";
 import UserLink from "./UserLink";
 import { NavLink } from "react-router-dom";
 import Likes from "./Likes";
@@ -79,7 +79,7 @@ export default function Comments({ author, postId, user }) {
       setUrl("/comments/" + _comment.id);
       return;
     }
-    if(!comment) return
+    if (!comment) return;
     setFormData({
       user_id: user.id,
       post_id: postId,
@@ -162,8 +162,7 @@ export default function Comments({ author, postId, user }) {
             </div>
           )}
           <div className="comments-section">
-            {comments &&
-              !isPending ?
+            {comments && !isPending ? (
               comments.map((_comment, i) => {
                 console.log(_comment.likes);
                 return (
@@ -205,17 +204,17 @@ export default function Comments({ author, postId, user }) {
                     </div>
                   </article>
                 );
-              }):   <>
-              <div
-                style={{
-                  width: "500px",
-                  height: "500px",
-                
-                }}
-              >
-               
-              </div>
-            </>}
+              })
+            ) : (
+              <>
+                <div
+                  style={{
+                    width: "500px",
+                    height: "500px",
+                  }}
+                ></div>
+              </>
+            )}
           </div>
         </section>
       ) : (
