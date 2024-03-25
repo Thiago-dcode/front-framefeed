@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./css/home.css";
 import "./css/navbar.css";
-import "./css/Effects.css";
+import "./css/effects.css";
 import "./css/post.css";
 import "./css/index.css";
 import './css/user.css'
