@@ -1,0 +1,150 @@
+.div-form {
+  
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  gap: 1rem;
+  place-items: center;
+}
+
+.component-form {
+  border-radius: 10px;
+  box-shadow: 5px 3px 5px white;
+  transition: all 0.5s ease-in-out;
+  padding: 2rem;
+
+  margin: auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.hover:hover {
+  box-shadow: 5px 3px 5px var(--gold);
+  transition: all 0.5s ease-in-out;
+}
+
+.component-form .input-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+.component-form .input-div label {
+  text-transform: capitalize;
+  font-size: 1rem;
+  align-self: flex-start;
+}
+.component-form .input-div input {
+  background: none;
+  outline: none;
+  text-align: center;
+
+  height: 30px;
+  border-style: none;
+  border-bottom: 2px solid white;
+
+  color: white;
+}
+.component-form .input-div textarea {
+  border-radius: 4px;
+  padding: 1rem;
+  outline: none;
+  background: none;
+  border-style: none;
+  border: 2px solid white;
+
+  color: white;
+  resize: none;
+  overflow: auto;
+}
+.component-form .input-div textarea:focus {
+  border: 2px solid var(--gold);
+}
+.component-form .input-div input:focus {
+  border-bottom: 2px solid var(--gold);
+}
+.component-form h2 {
+  align-self: flex-start;
+  align-self: center;
+}
+.component-form button {
+  margin-top: 1rem;
+  border: 2px solid white;
+  background-color: var(--green);
+  color: white;
+  padding: 0.2rem;
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.component-form .btn-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.errors {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 15px;
+  border: 3px solid rgba(165, 42, 42, 1);
+  background-color: rgba(165, 42, 42, 0.7);
+  padding: 0.5rem;
+}
+.errors p {
+  color: white;
+}
+.div-form .categories-form {
+  width: 600px;
+}
+
+.div-form .categories-form .categories-selected{
+  max-height: 250px;
+  overflow: scroll;
+  width: 100%;
+
+
+}
+.div-form .categories-form .categories-selected button{
+
+  color: black;
+  width: 80px;
+
+  background-color: var(--gold);
+}
+
+.div-form .categories-form .categories {
+
+  margin-top: 1rem;
+  max-height: 250px;
+  overflow: scroll;
+  align-self: center;
+  margin: auto;
+
+}
+.div-form .categories-form .categories button{
+  background-color: rgba(255, 255, 255, 0.4);
+
+}
+.div-form .categories-form button {
+
+
+word-spacing: 0.2rem;
+font-size: 0.6rem;
+
+  height: 100%;
+ 
+  word-wrap: break-word;
+
+}
