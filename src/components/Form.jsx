@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ErrorDiv from "./errorDiv";
+import ErrorDiv from "./ErrorDiv";
 import Loading from "./Loading";
 export default function Form({
   style = null,
