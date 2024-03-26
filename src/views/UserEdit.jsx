@@ -55,8 +55,7 @@ export default function PostEdit() {
       const { data } = await Api.post(`/users/${user.username}`, formData, {
         signal,
       });
-      console.log(data.user);
-      if (!(data === undefined || data.length === 0)) {
+    if (!(data === undefined || data.length === 0)) {
         window.localStorage.setItem("user", JSON.stringify(data.user));
         window.localStorage.setItem("ACCESS_TOKEN", data.token);
         return navigate("/" + data.user.username);

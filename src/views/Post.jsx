@@ -33,7 +33,6 @@ export default function Post() {
   const destroyPost = async () => {
     try {
       const { data } = await Api.delete("/posts/" + post.slug);
-      console.log(data);
       return navigate("/" + user.username);
     } catch (error) {
       console.log(error.message);
@@ -90,8 +89,7 @@ export default function Post() {
                         className={"post-like"}
                         type={"posts"}
                         id={post.id}
-                        _likes={post.likes
-                        }
+                        _likes={post.likes}
                         userId={user?.id}
                       />
                     </div>

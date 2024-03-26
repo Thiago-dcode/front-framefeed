@@ -164,7 +164,7 @@ export default function Comments({ author, postId, user }) {
           <div className="comments-section">
             {comments && !isPending ? (
               comments.map((_comment, i) => {
-                console.log(_comment.likes);
+               
                 return (
                   <article key={i} className="">
                     <div className="user-comment">

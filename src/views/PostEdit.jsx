@@ -44,7 +44,7 @@ export default function PostEdit() {
   const editPost = async (formData) => {
     try {
       setIsPending(true);
-      const { data } = await Api.post("/posts/"+post.slug, formData);
+      const { data } = await Api.post("/posts/" + post.slug, formData);
       if (!(data === undefined || data.length === 0)) {
         return navigate("/posts/" + data.post.slug);
       }
@@ -89,8 +89,8 @@ export default function PostEdit() {
       categories: categoriesToSubmit,
       _method: "patch",
     };
-    console.log(formData);
-     editPost(formData);
+  
+    editPost(formData);
   };
   useEffect(() => {
     const userLocalStorage = JSON.parse(window.localStorage.getItem("user"));
@@ -106,7 +106,6 @@ export default function PostEdit() {
       const categoriesSelectedPost = post.categories.map(
         (category) => category.name
       );
-      console.log(categoriesSelectedPost);
       setCategoriesSelected(categoriesSelectedPost);
     }
   }, [post]);

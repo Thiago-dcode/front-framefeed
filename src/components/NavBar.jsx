@@ -38,12 +38,14 @@ export default function NavBar() {
   };
   const logOut = async () => {
     try {
-      const res = await Api.post("/logout");
-      console.log(res);
       window.localStorage.removeItem("user");
+      const res = await Api.post("/logout");
       window.localStorage.removeItem("ACCESS_TOKEN");
+
       setUser("");
       setToken("");
+      
+
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -104,22 +106,23 @@ export default function NavBar() {
         <li className="user-new-post">
           {user && token ? (
             <>
-            <NavLink to={`/${user.username}/create`}>
-              <FontAwesomeIcon
-                className="icon post"
-                icon={faPlus}
-                style={{ color: "#ffffff" }}
-              />
+              <NavLink to={`/${user.username}/create`}>
+                <FontAwesomeIcon
+                  className="icon post"
+                  icon={faPlus}
+                  style={{ color: "#ffffff" }}
+                />
               </NavLink>
               <div className="user">
                 <div className="img">
-                <img style={{cursor: 'pointer'}}
-                  onClick={() => {
-                    setShowDropdown(!showDropdown);
-                  }}
-                  src={user.avatar}
-                  alt=""
-                />
+                  <img
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setShowDropdown(!showDropdown);
+                    }}
+                    src={user.avatar}
+                    alt=""
+                  />
                 </div>
 
                 <div
