@@ -170,7 +170,7 @@ export default function NavBar() {
                   ></div>
                 )}
               </div>
-              <div className="hidden">
+              <div className="hidden gap-5 items-center  justify-evenly sm:flex">
                 <NavLink to={`/${user.username}/create`}>
                   <FontAwesomeIcon
                     className="icon post"
