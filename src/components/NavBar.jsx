@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import UserLink from "./UserLink";
 import Loading from "./Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faBars } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../assets/images/FrameFeed.png";
 import Api from "../api/Api";
@@ -17,6 +17,7 @@ export default function NavBar() {
   const [token, setToken] = useState(
     window.localStorage.getItem("ACCESS_TOKEN")
   );
+  const [isDropOpen, setIsDropOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState("");
@@ -44,7 +45,6 @@ export default function NavBar() {
 
       setUser("");
       setToken("");
-      
 
       navigate("/");
     } catch (error) {
@@ -103,57 +103,181 @@ export default function NavBar() {
             </div>
           )}
         </li>
-        <li className="user-new-post">
+        <li className="user-new-post w-20">
           {user && token ? (
             <>
-              <NavLink to={`/${user.username}/create`}>
-                <FontAwesomeIcon
-                  className="icon post"
-                  icon={faPlus}
-                  style={{ color: "#ffffff" }}
-                />
-              </NavLink>
-              <div className="user">
-                <div className="img">
-                  <img
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      setShowDropdown(!showDropdown);
-                    }}
-                    src={user.avatar}
-                    alt=""
-                  />
-                </div>
-
-                <div
-                  style={{
-                    display: showDropdown ? "flex" : "none",
+              <div className="sm:hidden relative w-full flex-col flex items-center justify-center">
+                <button
+                  className="z-[99]"
+                  onClick={() => {
+                    setIsDropOpen(!isDropOpen);
                   }}
-                  className="dropdown"
                 >
-                  <NavLink
-                    onClick={() => {
-                      setShowDropdown(false);
+                  <FontAwesomeIcon
+                    className=""
+                    icon={faBars}
+                    style={{ color: "#ffffff" }}
+                  />
+                </button>
+                {isDropOpen && (
+                  <div
+                    onMouseEnter={() => {}}
+                    onBlur={() => {
+                      setIsDropOpen(false);
                     }}
-                    to={`/${user.username}`}
+                    className="z-[99] absolute top-6 right-4 flex items-start "
                   >
-                    Profile
-                  </NavLink>
-                  <form
-                    onSubmit={(e) => {
-                      handleSubmit(e);
+                    <div
+                      onMouseDown={(e) => {
+                        e.stopPropagation();
+                      }}
+                      className=" flex flex-col items-center gap-2 bg-white/90 rounded-md  !text-black p-2"
+                    >
+                      <NavLink  className={
+                        "!text-black hover:bg-white/80 w-full rounded-md text-center px-1 "
+                      }
+                        onClick={() => {
+                          setShowDropdown(false);
+                        }}
+                        to={`/${user.username}`}
+                      >
+                        Profile
+                      </NavLink>
+                      <form
+                        onSubmit={(e) => {
+                          handleSubmit(e);
+                        }}
+                      >
+                        <button  >Log out</button>
+                      </form>
+                      <NavLink to={`/${user.username}/create`}>
+                        <FontAwesomeIcon
+                          className="icon post"
+                          icon={faPlus}
+                          style={{ color: "#000000" }}
+                        />
+                      </NavLink>
+                    </div>
+                  </div>
+                )}
+                {isDropOpen && (
+                  <div
+                    onMouseDown={() => {
+                      console.log("DROPP");
+                      setIsDropOpen(false);
                     }}
+                    className=" z-[97] bg-black/10 fixed left-0 top-0 w-screen h-screen"
+                  ></div>
+                )}
+              </div>
+              <div className="hidden">
+                <NavLink to={`/${user.username}/create`}>
+                  <FontAwesomeIcon
+                    className="icon post"
+                    icon={faPlus}
+                    style={{ color: "#ffffff" }}
+                  />
+                </NavLink>
+                <div className="user">
+                  <div className="img">
+                    <img
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setShowDropdown(!showDropdown);
+                      }}
+                      src={user.avatar}
+                      alt=""
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      display: showDropdown ? "flex" : "none",
+                    }}
+                    className="dropdown"
                   >
-                    <button>Log out</button>
-                  </form>
+                    <NavLink
+                      onClick={() => {
+                        setShowDropdown(false);
+                      }}
+                      to={`/${user.username}`}
+                    >
+                      Profile
+                    </NavLink>
+                    <form
+                      onSubmit={(e) => {
+                        handleSubmit(e);
+                      }}
+                    >
+                      <button>Log out</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </>
           ) : (
-            <>
-              <NavLink to={"/login"}>Login</NavLink>
-              <NavLink to={"/register"}>Register</NavLink>
-            </>
+            <div className="relative w-full flex-col flex items-center justify-center">
+              <button
+                className="z-[99]"
+                onClick={() => {
+                  setIsDropOpen(!isDropOpen);
+                }}
+              >
+                <FontAwesomeIcon
+                  className=""
+                  icon={faBars}
+                  style={{ color: "#ffffff" }}
+                />
+              </button>
+              {isDropOpen && (
+                <div
+                  onMouseEnter={() => {}}
+                  onBlur={() => {
+                    setIsDropOpen(false);
+                  }}
+                  className="z-[99] absolute top-6 right-4 flex items-start "
+                >
+                  <div
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                    }}
+                    className=" flex flex-col items-center gap-2  bg-white/90 rounded-md  !text-black p-2"
+                  >
+                    <NavLink
+                      className={
+                        "!text-black hover:bg-white/80 w-full rounded-md text-center  px-1 "
+                      }
+                      onClick={() => {
+                        setIsDropOpen(false);
+                      }}
+                      to={"/login"}
+                    >
+                      Login
+                    </NavLink>
+                    <NavLink
+                      className={
+                        "!text-black hover:bg-white/80 w-full rounded-md text-center px-1 "
+                      }
+                      onClick={() => {
+                        setIsDropOpen(false);
+                      }}
+                      to={"/register"}
+                    >
+                      Register
+                    </NavLink>
+                  </div>
+                </div>
+              )}
+              {isDropOpen && (
+                <div
+                  onMouseDown={() => {
+                    console.log("DROPP");
+                    setIsDropOpen(false);
+                  }}
+                  className=" z-[97] bg-black/10 fixed left-0 top-0 w-screen h-screen"
+                ></div>
+              )}
+            </div>
           )}
         </li>
       </ul>

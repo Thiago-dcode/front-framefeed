@@ -18,17 +18,18 @@ export default function PostCreate() {
   const [file, setFile] = useState(null);
   const [body, setBody] = useState("");
 
-
-
   const createPost = async (formData) => {
     try {
+    
       setIsPending(true);
       const { data } = await Api.post("/posts", formData);
+
       if (!(data === undefined || data.length === 0)) {
         return navigate("/posts/" + data.post.slug);
       }
     } catch (error) {
-      switch (error.response.status) {
+      console.log(error);
+      switch (error.response?.status) {
         case 422:
           setError(error.response.data.errors);
           break;
@@ -61,13 +62,19 @@ export default function PostCreate() {
   const handleSubmit = (e) => {
     setError("");
     e.preventDefault();
-    const formData = {
-      user_id: userId,
-      title,
-      image: file,
-      body,
-      categories: categoriesToSubmit,
-    };
+    const formData = new FormData();
+    formData.append("user_id", userId);
+    formData.append("title", title);
+    formData.append("image", file);
+    formData.append("body", body);
+    formData.append("categories", categoriesToSubmit);
+    // const formData = {
+    //   user_id: userId,
+    //   title,
+    //   image: file,
+    //   body,
+    //   categories: categoriesToSubmit,
+    // };
     createPost(formData);
   };
   useEffect(() => {
@@ -81,7 +88,7 @@ export default function PostCreate() {
     const controller = new AbortController();
     const signal = controller.signal;
     setUserId(userLocalStorage.id);
-  
+
     return () => controller.abort();
   }, []);
 
